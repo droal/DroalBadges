@@ -1,9 +1,9 @@
 import React from 'react'
 
-import '../styles/BadgeNew.css';
+import './styles/BadgeNew.css';
 import header from '../images/logo.png'
 
-import Navbar from '../components/NavBar'
+import Navbar from '../components/Navbar'
 import Badge from '../components/Badge'
 import BadgeForm from '../components/BadgeForm';
 
