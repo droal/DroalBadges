@@ -6,7 +6,26 @@ import confLogo from '../images/logo.png';
 import Badge from '../components/Badge';
 import DeleteBadgeModal from '../components/DeleteBadgeModal';
 
+
+//Custom Hook
+function useIncreaseCount(max) {
+  const [count, setCount] = React.useState(0);
+
+  if (count > max) {
+    setCount(0);
+  }
+
+  return [count, setCount];
+}
+
+
 function BadgeDetails(props) {
+  //Hook state
+  //const [count, setCount] = React.useState(0)
+
+  //Usando el custom hook
+  const [count, setCount] = useIncreaseCount(4)
+
   const badge = props.badge;
 
   return (
@@ -41,6 +60,15 @@ function BadgeDetails(props) {
             <h2>Actions</h2>
             <div>
               <div>
+                <button 
+                  onClick={() => {
+                    setCount(count + 1);
+                  }}
+                  className="btn btn-primary mb-4"
+                >
+                  Increase count: {count}
+                </button>
+
                 <Link
                   className="btn btn-primary mb-4"
                   to={`/badges/${badge.id}/edit`}
@@ -50,7 +78,9 @@ function BadgeDetails(props) {
               </div>
 
               <div>
-                <button onClick={props.onOpenModal} className="btn btn-danger">
+                <button 
+                onClick={props.onOpenModal} 
+                className="btn btn-danger">
                   Delete
                 </button>
                 <DeleteBadgeModal
